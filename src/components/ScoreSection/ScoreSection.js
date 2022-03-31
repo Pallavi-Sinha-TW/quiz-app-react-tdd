@@ -1,8 +1,13 @@
 import Questions from "../../questions";
 
-const ScoreSection = () => {
+const ScoreSection = ({score}) => {
     return (
-        <div></div>
+        <div className = "main">
+            <div className = "score-section" data-testid = "score-section">
+                You scored {score} out of {Questions.length}
+            </div>
+        </div>
+
     )
 }
 
