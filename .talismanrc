@@ -2,3 +2,8 @@ fileignoreconfig:
 - filename: package-lock.json
   checksum: 35892f459d0e296c617b36dfb3698d65b23e2bae0e0f6ff71a732c9427c15ab7
 version: ""
+
+fileignoreconfig:
+- filename: src/components/QuestionAnswerSection/QuestionAnswerSection.js
+  checksum: 5e8153a7e9bc74f24587f063db82c591854152b8605cd72bd12a3cff2cbdf26f
+version: ""
