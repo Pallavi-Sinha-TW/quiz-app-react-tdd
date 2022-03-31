@@ -2,11 +2,11 @@ import Questions from '../../Questions';
 import {nanoid} from 'nanoid';
 
 
-const QuestionAnswerSection = ({currentQuestion}) => {
+const QuestionAnswerSection = ({currentQuestion, handleAnswerOptionClick}) => {
 
 
     const buttons = Questions[currentQuestion].answerOptions.map((answerOption) => (
-        <button key = {nanoid()}>
+        <button key = {nanoid()} onClick = {handleAnswerOptionClick(answerOption.isCorrect)}>
             {answerOption.answerLabel}
         </button>
     ))

@@ -7,3 +7,8 @@ fileignoreconfig:
 - filename: src/components/QuestionAnswerSection/QuestionAnswerSection.js
   checksum: 5e8153a7e9bc74f24587f063db82c591854152b8605cd72bd12a3cff2cbdf26f
 version: ""
+
+fileignoreconfig:
+- filename: src/components/QuestionAnswerSection/QuestionAnswerSection.js
+  checksum: 2e213789a2a08cf6dc24bdb71c900b7d82464aac247399f55377660e19c44876
+version: ""
