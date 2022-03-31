@@ -4,7 +4,7 @@ import Questions from '../../Questions';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-17-updated';
 import { shallow } from 'enzyme';
-import { getByRole, getByTestId, render, screen} from '@testing-library/react';
+import {getByTestId, render, screen} from '@testing-library/react';
 
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -37,6 +37,16 @@ describe("Testing functionality of QuestionAnswerSection", () => {
         Questions[currentQuestionIndex].answerOptions.forEach((answerOption) => {
             expect( screen.getByText(answerOption.answerLabel)).toBeInTheDocument();
         })
+    })
+
+    it("Should display current question count", () => {
+        const currentQuestionIndex = 0;
+        const { getByTestId } = render(<QuestionAnswerSection currentQuestion = {currentQuestionIndex}/>);
+
+        const expectedQuestionCount = currentQuestionIndex + 1;
+        const totalQuestionCount = Questions.length;
+        expect(getByTestId("question-count-number")).toHaveTextContent("Question " + expectedQuestionCount + " / " + totalQuestionCount);
+
     })
 
 

@@ -13,6 +13,9 @@ const QuestionAnswerSection = ({currentQuestion}) => {
     return (
         <div className="main">
             <div className="question-section">
+                <div className='question-count' data-testid = "question-count-number">
+                    <span >Question {currentQuestion + 1}</span> / {Questions.length}
+                </div>
                 <div className="question-text" data-testid = "question-text">
                     { Questions[currentQuestion].questionLabel }
                 </div>
