@@ -20,6 +20,29 @@ const Questions = [
             },
 
         ]
+    },
+
+    {
+        questionLabel : "Which ice-cream flavour I like the most?",
+        answerOptions : [
+            {
+                answerLabel : "Vanilla",
+                isCorrect : false
+            },
+            {
+                answerLabel : "Strawberry",
+                isCorrect : false
+            },
+            {
+                answerLabel : "Butter-scotch",
+                isCorrect : true
+            },
+            {
+                answerLabel : "Chocolate",
+                isCorrect : false
+            },
+
+        ]
     }
 ];
 

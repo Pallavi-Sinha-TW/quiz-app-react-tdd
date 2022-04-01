@@ -1,10 +1,13 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import QuestionAnswerSection from './components/QuestionAnswerSection/QuestionAnswerSection';
 
 function App() {
   return (
-    <div></div>
-  );
-}
+      <div>
+        {<QuestionAnswerSection />}
+      </div>
+    );
+  }
 
 export default App;
