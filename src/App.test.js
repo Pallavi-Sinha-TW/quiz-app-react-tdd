@@ -33,4 +33,21 @@ describe("Testing functionality of App component", () => {
 
     expect(app.getByTestId("question-text")).toHaveTextContent(Questions[currentQuestionIndex + 1].questionLabel);
   })
+
+  it("Should display score when option button of last question is clicked", () => {
+    const app = render(<App />);
+
+    let expectedScore = 0;
+    Questions.forEach ((question) => {
+      const option = question.answerOptions[1];
+      const optionButton = app.getByText(option.answerLabel);
+      fireEvent.click(optionButton);
+      if (question.answerOptions[1].isCorrect == true){
+        expectedScore += 1;
+      }
+    })
+
+    expect(app.getByTestId("score-section")).toHaveTextContent("You scored " + expectedScore + " out of " + Questions.length);
+    
+  })
 })
