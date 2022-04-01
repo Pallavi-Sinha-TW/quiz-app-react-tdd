@@ -6,7 +6,7 @@ const QuestionAnswerSection = ({currentQuestion, handleAnswerOptionClick}) => {
 
 
     const buttons = Questions[currentQuestion].answerOptions.map((answerOption) => (
-        <button key = {nanoid()} onClick = {handleAnswerOptionClick(answerOption.isCorrect)}>
+        <button key = {nanoid()} onClick = {() => handleAnswerOptionClick(answerOption.isCorrect)}>
             {answerOption.answerLabel}
         </button>
     ))
