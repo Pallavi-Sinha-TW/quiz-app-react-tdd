@@ -11,15 +11,17 @@ function App() {
   const [score, setScore] = useState(0);
 
   const handleAnswerOptionClick = (isCorrect) => {
-    if (currentQuestion < (Questions.length - 1)){
-      setCurrentQuestion(currentQuestion + 1)
-    }
-    else{
-      setShowScore(true);
-    }
-    if (isCorrect == true){
-      setScore(score + 1);
-    }
+    setTimeout (() => {
+      if (currentQuestion < (Questions.length - 1)){
+        setCurrentQuestion(currentQuestion + 1)
+      }
+      else{
+        setShowScore(true);
+      }
+      if (isCorrect == true){
+        setScore(score + 1);
+      }
+    }, 500)
   }
   return (
       <div>

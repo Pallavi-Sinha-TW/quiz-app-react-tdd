@@ -1,4 +1,4 @@
-import { fireEvent, render} from '@testing-library/react';
+import { act, fireEvent, render, waitFor} from '@testing-library/react';
 import App from './App';
 
 import Enzyme from 'enzyme';
@@ -24,30 +24,47 @@ it("Should render QuestionAnswerSection Component", () => {
 
 describe("Testing functionality of App component", () => {
 
-  it("Should display next question when option button of current question is clicked provided the current question is not the last", () => {
+  it("Should display next question after some delay when option button of current question is clicked provided the current question is not the last", async() => {
     const app = render(<App />);
-
     const currentQuestionIndex = 0
     const button = app.getByText(Questions[currentQuestionIndex].answerOptions[0].answerLabel);
     fireEvent.click(button);
-
-    expect(app.getByTestId("question-text")).toHaveTextContent(Questions[currentQuestionIndex + 1].questionLabel);
-  })
-
-  it("Should display score when option button of last question is clicked", () => {
-    const app = render(<App />);
-
-    let expectedScore = 0;
-    Questions.forEach ((question) => {
-      const option = question.answerOptions[1];
-      const optionButton = app.getByText(option.answerLabel);
-      fireEvent.click(optionButton);
-      if (question.answerOptions[1].isCorrect == true){
-        expectedScore += 1;
-      }
-    })
-
-    expect(app.getByTestId("score-section")).toHaveTextContent("You scored " + expectedScore + " out of " + Questions.length);
     
+    const expectedQuestionLabel = Questions[currentQuestionIndex + 1].questionLabel;
+    await waitFor(() => app.getByText(expectedQuestionLabel));
+    expect(app.getByTestId("question-text")).toHaveTextContent(expectedQuestionLabel);
   })
+
+it("Should display correct score after some delay when option button of last question is clicked", async () => {
+  const app = render(<App />);
+  let currentQuestionIndex = 0;
+  let expectedScore = 0
+  while(currentQuestionIndex < (Questions.length - 1)){
+    let question = Questions[currentQuestionIndex];
+    let option = question.answerOptions[0];
+    if (option.isCorrect == true){
+      expectedScore += 1;
+    }
+    
+    let optionButton = app.getByText(option.answerLabel);
+    fireEvent.click(optionButton);
+    
+    let nextQuestion = Questions[currentQuestionIndex + 1];
+    await waitFor(() => app.getByText(nextQuestion.questionLabel));
+    currentQuestionIndex += 1;
+  }
+
+  let question = Questions[currentQuestionIndex];
+  let option = question.answerOptions[0];
+  if (option.isCorrect == true){
+    expectedScore += 1
+  }
+
+  let optionButton = app.getByText(option.answerLabel);
+  fireEvent.click(optionButton);
+
+  const expectedScoreMessage = "You scored " + expectedScore + " out of " + Questions.length;
+  await waitFor(() => app.getByText(expectedScoreMessage));
+  expect(app.getByTestId("score-section")).toHaveTextContent(expectedScoreMessage);
+})
 })
