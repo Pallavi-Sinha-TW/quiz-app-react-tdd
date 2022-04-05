@@ -9,8 +9,15 @@ function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
+  const [buttonClass, setButtonClass] = useState(null)
 
   const handleAnswerOptionClick = (isCorrect) => {
+    if (isCorrect == true){
+      setButtonClass('correct');
+    }
+    else{
+      setButtonClass('incorrect');
+    }
     setTimeout (() => {
       if (currentQuestion < (Questions.length - 1)){
         setCurrentQuestion(currentQuestion + 1)
@@ -21,6 +28,7 @@ function App() {
       if (isCorrect == true){
         setScore(score + 1);
       }
+      setButtonClass(null)
     }, 500)
   }
   return (
@@ -32,7 +40,7 @@ function App() {
             <ScoreSection score = {score} />
           ) :
           (
-            <QuestionAnswerSection currentQuestion={currentQuestion} handleAnswerOptionClick = {handleAnswerOptionClick}/>
+            <QuestionAnswerSection currentQuestion={currentQuestion} handleAnswerOptionClick = {handleAnswerOptionClick} buttonClass = {buttonClass}/>
           )
         }
       </div>

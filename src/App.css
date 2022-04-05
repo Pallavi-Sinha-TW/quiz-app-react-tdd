@@ -80,3 +80,11 @@ button:hover{
 button:focus{
   outline: none;
 }
+
+.correct:hover{
+  background-color: #2f922f;
+}
+
+.incorrect:hover {
+  background-color: #ff3333
+}

@@ -1,12 +1,12 @@
 import Questions from '../../Questions';
 import {nanoid} from 'nanoid';
+import React from 'react';
 
 
-const QuestionAnswerSection = ({currentQuestion, handleAnswerOptionClick}) => {
-
+const QuestionAnswerSection = ({currentQuestion, handleAnswerOptionClick, buttonClass}) => {
 
     const buttons = Questions[currentQuestion].answerOptions.map((answerOption) => (
-        <button key = {nanoid()} onClick = {() => handleAnswerOptionClick(answerOption.isCorrect)}>
+        <button key = {nanoid()} onClick = {() => handleAnswerOptionClick(answerOption.isCorrect) } className = {buttonClass}>
             {answerOption.answerLabel}
         </button>
     ))
