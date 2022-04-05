@@ -25,6 +25,7 @@ function App() {
   }
   return (
       <div>
+        <h1 data-testid = "heading" className='heading'>Pallavi's Quiz</h1>
         {
           showScore ? 
           (

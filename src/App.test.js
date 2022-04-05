@@ -22,6 +22,12 @@ it("Should render QuestionAnswerSection Component", () => {
   expect(app.containsMatchingElement(<QuestionAnswerSection />)).toEqual(true);
 })
 
+it("Should have 'Pallavi's Quiz' as heading", () => {
+  const {getByTestId} = render(<App />);
+
+  expect(getByTestId("heading")).toHaveTextContent("Pallavi's Quiz");
+})
+
 describe("Testing functionality of App component", () => {
 
   it("Should display next question after some delay when option button of current question is clicked provided the current question is not the last", async() => {
